@@ -32,11 +32,11 @@ public class Main {
          Выберите подходящий тип переменных, в которые будут сохраняться значения.
          Не забудьте, что метод, вычисляющий значение переменной должен возвращать тот же тип.
         */
-        /*тип*/ minValue = findMinValue(oneDimensionArray);
-        /*тип*/ maxValue = findMaxValue(oneDimensionArray);
-        /*тип*/ sumOfValues = sumValues(oneDimensionArray);
-        /*тип*/ firstPositiveIndex = getFirstPositiveIndex(oneDimensionArray);
-        /*тип*/ firstNegativeIndex = getFirstNegativeIndex(oneDimensionArray);
+        int minValue = findMinValue(oneDimensionArray);
+        int maxValue = findMaxValue(oneDimensionArray);
+        int sumOfValues = sumValues(oneDimensionArray);
+        byte firstPositiveIndex = getFirstPositiveIndex(oneDimensionArray);
+        byte firstNegativeIndex = getFirstNegativeIndex(oneDimensionArray);
 
 
         System.out.println("First part");
@@ -57,8 +57,8 @@ public class Main {
          Выберите подходящий тип переменных, в которые будут сохраняться значения.
          Не забудьте, что метод должен возвращать значение тогот же типа.
         */
-        /*тип*/ lastPositiveIndex = getLastPositiveIndex(oneDimensionArray);
-        /*тип*/ lastNegativeIndex = getLastNegativeIndex(oneDimensionArray);
+        byte lastPositiveIndex = getLastPositiveIndex(oneDimensionArray);
+        byte lastNegativeIndex = getLastNegativeIndex(oneDimensionArray);
         byte[] positiveNegativeNumber = countPositiveNegative(oneDimensionArray);
 
         System.out.println("last positive index: " + lastPositiveIndex);
@@ -84,102 +84,128 @@ public class Main {
     }
 
     /* Укажите тип значения, которое будет возвращать метод*/
-    private static /*тип*/ findMinValue(int[] arrayOfValues) {
+    private static int findMinValue(int[] arrayOfValues) {
         /* Укажите тип переменной */
-        /*тип*/ minValue = arrayOfValues[0];
+        int minValue = arrayOfValues[0];
         /*
            Используя цикл for переберите все значения массива и сохраните минимальное в переменную minValue.
          */
+        for(int i=0; i<arrayOfValues.length; i++){
+            if (arrayOfValues[i]<minValue){
+                minValue = arrayOfValues[i];
+            }
+        }
         return minValue;
     }
 
     /* Укажите тип значения, которое будет возвращать метод*/
-    private static /*тип*/ findMaxValue(int[] arrayOfValues) {
+    private static int findMaxValue(int[] arrayOfValues) {
         /* Укажите тип переменной */
-        /*тип*/ maxValue = arrayOfValues[0];
+        int maxValue = arrayOfValues[0];
         /*
            Используя цикл for переберите все значения массива и сохраните максимальное в переменную maxValue.
          */
+        for(int i=0; i<arrayOfValues.length; i++){
+            if (arrayOfValues[i]>maxValue){
+                maxValue = arrayOfValues[i];
+            }
+        }
         return maxValue;
     }
 
     /* Укажите тип значения, которое будет возвращать метод*/
-    private static /*тип*/ sumValues(int[] arrayOfValues) {
+    private static int sumValues(int[] arrayOfValues) {
         /* Укажите тип переменной */
-        /*тип*/ sum = 0;
+        int sum = 0;
         /* Используя цикл for переберите все значения массива, просуммируйте и сохраните сумму всех значений в переменную sum. */
+        for(int i=0; i<arrayOfValues.length; i++){
+            sum += arrayOfValues[i];
+        }
         return sum;
     }
 
     /* Укажите тип значения, которое будет возвращать метод*/
-    private static /*тип*/ getFirstPositiveIndex(int[] arrayOfValues) {
+    private static byte getFirstPositiveIndex(int[] arrayOfValues) {
         /* Укажите тип переменной */
-        /*тип*/ firstPositiveIndex = 0;
+        byte firstPositiveIndex = 0;
         /* Используя цикл while найдите индекс первого положительного значения в массиве и сохраните в переменную firstPositiveIndex */
+
+        while(int i=0; arrayOfValues[i]>0){
+            i++;
+            firstPositiveIndex = arrayOfValues[i];
+            }
         return firstPositiveIndex;
     }
 
     /* Укажите тип значения, которое будет возвращать метод*/
-    private static /*тип*/ getFirstNegativeIndex(int[] arrayOfValues) {
+    private static byte getFirstNegativeIndex(int[] arrayOfValues){
         /* Укажите тип переменной */
-        /*тип*/ firstNegativeIndex = 0;
+        byte firstNegativeIndex = 0;
         /* Используя цикл while найдите первое отрицательное значение и сохраните в переменную firstNegativeIndex */
+        while(int i=0; arrayOfValues[i]<0){
+            i++;
+            firstNegativeIndex = arrayOfValues[i];
+            }
         return firstNegativeIndex;
     }
 
     /* Укажите тип значения, которое будет возвращать метод*/
-    private static /*тип*/ getLastPositiveIndex(int[] arrayOfValues) {
+    private static byte getLastPositiveIndex(int[] arrayOfValues){
+        byte lastPositiveIndex = 0;
         /*
         Найдите последнее положительное значение в массиве.
         Верните найденное значение используя ключевое слово return.
          */
+        while(int i=0; arrayOfValues[i]>0){
+            i--;
+            lastPositiveIndex = arrayOfValues[i];
+        }
+        return lastPositiveIndex;
     }
 
     /* Укажите тип значения, которое будет возвращать метод*/
-    private static /*тип*/ getLastNegativeIndex(int[] arrayOfValues) {
+    private static byte getLastNegativeIndex(int[] arrayOfValues) {
+        byte lastNegativeIndex = 0;
         /*
         Найдите последнее отрицательное значение в массиве.
         Верните найденное значение используя ключевое слово return.
          */
+        while(int i=0; arrayOfValues[i]<0){
+            i--;
+            lastNegativeIndex = arrayOfValues[i];
+        }
+        return lastNegativeIndex;
     }
 
     private static byte[] countPositiveNegative(int[] arrayOfValues) {
-        byte[] result = new byte[2];
 
+        byte[] result = new byte[2];
         /*
         Посчитайте количество положительных и отрицательных значений в массиве arrayOfValues.
         Результат сохраните в массив result:
             В первый элемент - количество положительных
             Во второй элемент - количество отрицательных
          */
-
         return result;
     }
-
     private static long[] sumSubArrays(int[][] arrayOfValues) {
         /*
         Объявите массив типа long, сохраните в него результат сложения значений во всех столбцах матрицы arrayValues.
         Например, если arrayValues:
-
         3 1 3
         2 4 3
         5 4 2
-
         То полученный массив должен содержать суммы значений для каждого столбца:
         10 9 8
-
         Верните полученный массив используя ключевое слово return.
          */
     }
-
     private static void sort(int[] array) {
         //Отсортируйте массив array с помощью алгоритма "сортировки выбором".
     }
-
     public static void main(String[] args) {
         level1();
         level2();
         level3();
     }
-
 }
