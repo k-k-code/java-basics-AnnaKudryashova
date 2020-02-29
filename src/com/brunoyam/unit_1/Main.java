@@ -34,7 +34,7 @@ public class Main {
         */
         int minValue = findMinValue(oneDimensionArray);
         int maxValue = findMaxValue(oneDimensionArray);
-        int sumOfValues = sumValues(oneDimensionArray);
+        long sumOfValues = sumValues(oneDimensionArray);
         byte firstPositiveIndex = getFirstPositiveIndex(oneDimensionArray);
         byte firstNegativeIndex = getFirstNegativeIndex(oneDimensionArray);
 
@@ -67,7 +67,7 @@ public class Main {
         System.out.println("total negatives: " + positiveNegativeNumber[1]);
     }
 
-    private static void level3() {
+        private static void level3() {
         int[][] twoDimensionsArray = Generator.getTwoDimensionsArray();
         long[] arrayOfSums = sumSubArrays(twoDimensionsArray);
 
@@ -75,7 +75,7 @@ public class Main {
         System.out.println("Second part");
         System.out.println("result: " + Arrays.toString(arrayOfSums));
 
-        sort(oneDimensionArray);
+        /*sort(oneDimensionArray);*/
 
         System.out.println();
         for(int value : oneDimensionArray) {
@@ -129,10 +129,10 @@ public class Main {
         /* Укажите тип переменной */
         byte firstPositiveIndex = 0;
         /* Используя цикл while найдите индекс первого положительного значения в массиве и сохраните в переменную firstPositiveIndex */
-
-        while(int i=0; arrayOfValues[i]>0){
+        int i = 0;
+        while(arrayOfValues[i]>0) {
             i++;
-            firstPositiveIndex = arrayOfValues[i];
+           firstPositiveIndex = (byte) arrayOfValues[i];
             }
         return firstPositiveIndex;
     }
@@ -142,9 +142,10 @@ public class Main {
         /* Укажите тип переменной */
         byte firstNegativeIndex = 0;
         /* Используя цикл while найдите первое отрицательное значение и сохраните в переменную firstNegativeIndex */
-        while(int i=0; arrayOfValues[i]<0){
+        int i = 0;
+        while(arrayOfValues[i]<0) {
             i++;
-            firstNegativeIndex = arrayOfValues[i];
+            firstNegativeIndex = (byte) arrayOfValues[i];
             }
         return firstNegativeIndex;
     }
@@ -156,9 +157,10 @@ public class Main {
         Найдите последнее положительное значение в массиве.
         Верните найденное значение используя ключевое слово return.
          */
-        while(int i=0; arrayOfValues[i]>0){
+       int i = arrayOfValues.length;
+        while(arrayOfValues[i]>0){
             i--;
-            lastPositiveIndex = arrayOfValues[i];
+            lastPositiveIndex = (byte) arrayOfValues[i];
         }
         return lastPositiveIndex;
     }
@@ -170,15 +172,15 @@ public class Main {
         Найдите последнее отрицательное значение в массиве.
         Верните найденное значение используя ключевое слово return.
          */
-        while(int i=0; arrayOfValues[i]<0){
+        int i = arrayOfValues.length;
+        while(arrayOfValues[i]<0){
             i--;
-            lastNegativeIndex = arrayOfValues[i];
+            lastNegativeIndex = (byte) arrayOfValues[i];
         }
         return lastNegativeIndex;
     }
 
     private static byte[] countPositiveNegative(int[] arrayOfValues) {
-
         byte[] result = new byte[2];
         /*
         Посчитайте количество положительных и отрицательных значений в массиве arrayOfValues.
@@ -186,9 +188,20 @@ public class Main {
             В первый элемент - количество положительных
             Во второй элемент - количество отрицательных
          */
+       byte countPositive = 0;
+        byte countNegative = 0;
+        for (byte i = 0; i < arrayOfValues.length; i++) {
+            if (arrayOfValues[i] > 0) {
+                countPositive++;
+                result[0] = countPositive;
+            } else if (arrayOfValues[i] < 0) {
+                countNegative++;
+                result[1] = countNegative;
+            }
+        }
         return result;
     }
-    private static long[] sumSubArrays(int[][] arrayOfValues) {
+       private static long[] sumSubArrays(int[][] arrayOfSums) {
         /*
         Объявите массив типа long, сохраните в него результат сложения значений во всех столбцах матрицы arrayValues.
         Например, если arrayValues:
@@ -199,6 +212,21 @@ public class Main {
         10 9 8
         Верните полученный массив используя ключевое слово return.
          */
+        int index = 0;
+        long[] columnSum = new long[arrayOfSums[index].length];
+
+            for (int row = 0; row < arrayOfSums[0].length; row++) {
+                long sum = 0;
+
+                    for(int col = 0; col < arrayOfSums.length; col++) {
+                    sum += arrayOfSums[col][row];
+                }
+                columnSum[index] = sum;
+                System.out.println("Index is:" + index + "Sum is:" + sum);
+                index++;
+            }
+            return columnSum;
+        }
     }
     private static void sort(int[] array) {
         //Отсортируйте массив array с помощью алгоритма "сортировки выбором".
